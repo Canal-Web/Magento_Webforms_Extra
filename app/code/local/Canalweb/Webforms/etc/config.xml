@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Canalweb_Webforms>
+            <version>0.1.0</version>
+        </Canalweb_Webforms>
+    </modules>
+    <global>
+        <models>
+            <webforms>
+                <rewrite>
+                    <webforms>Canalweb_Webforms_Model_Rewrite_Webforms</webforms>
+                </rewrite>
+            </webforms>
+            <core>
+                <rewrite>
+                    <email_template_filter>Canalweb_Webforms_Model_Rewrite_Email_Template_Filter</email_template_filter>
+                </rewrite>
+            </core>
+        </models>
+    </global>
+</config>
