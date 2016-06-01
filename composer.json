@@ -1,0 +1,14 @@
+{
+    "name": "canal-web/magento-webforms-extra",
+    "type": "magento-module",
+    "description": "Ajout de fonctionnalités au module Webforms (par Vladimir Popov)",
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
+    },
+    "authors":[
+      {
+            "name":"Peeter Rannou",
+            "email":"peeter@canal-web.fr"
+        }
+    ]
+}
