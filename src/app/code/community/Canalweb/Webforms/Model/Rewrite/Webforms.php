@@ -23,7 +23,7 @@ class Canalweb_Webforms_Model_Rewrite_Webforms extends VladimirPopov_WebForms_Mo
                 $collection = Mage::getModel('webforms/fields')
                     ->getCollection()
                     ->addFilter('webform_id', $this->getId());
-                
+
                 // Get ID for the "entity_id" field.
                 $fieldId = NULL;
                 foreach ($collection as $field) {
@@ -47,17 +47,26 @@ class Canalweb_Webforms_Model_Rewrite_Webforms extends VladimirPopov_WebForms_Mo
                         if (strpos($settings['email'], ',') !== FALSE) {
                             $settings['email'] = str_replace('automatique,', '', $settings['email']);
                         }
-                        
+
                         if ($product->getEmail())
                             $settings['email'] .= ', ' . $product->getEmail();
 
-                        // Cache the value since the function will be called 
-                        // multiple times but only once with postData. We need 
-                        // the function to be able to return the right e-mail 
+                        // Cache the value since the function will be called
+                        // multiple times but only once with postData. We need
+                        // the function to be able to return the right e-mail
                         // address each time.
                         Mage::register('webform_entity_email', $settings['email']);
                     }
                 }
+            }
+        }
+        elseif(strpos($settings['email'], 'customer_rattachement') !== FALSE) {
+          if (Mage::registry('customer_contact_rattachement')) {
+                $settings["email"] = Mage::registry('customer_contact_rattachement');
+            }
+            else {
+                $customerRattachement = Mage::helper('canalweb_contactrattachement/contactrattachement')->getCustomerContactRattachement();
+                $settings["email"] = $customerRattachement->getEmail();
             }
         }
         return $settings;
