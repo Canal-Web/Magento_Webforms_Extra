@@ -66,7 +66,10 @@ class Canalweb_Webforms_Model_Rewrite_Webforms extends VladimirPopov_WebForms_Mo
             }
             else {
                 $customerRattachement = Mage::helper('canalweb_contactrattachement/contactrattachement')->getCustomerContactRattachement();
-                $settings["email"] = $customerRattachement->getEmail();
+                $emails = $customerRattachement->getEmail();
+                $emails = str_replace(' ','',$emails);
+                $emails_array = explode(',', $emails);
+                if (array_key_exists(0,$emails_array)) $settings["email"] = $emails_array[0];
             }
         }
         return $settings;
